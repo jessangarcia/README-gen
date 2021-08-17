@@ -169,6 +169,7 @@ const promptQues = readMeData => {
     })
 }
 
+//ties everything together 
 prompt().then(promptQues).then(readMeData => {
     return generateMarkdown(readMeData);
 })

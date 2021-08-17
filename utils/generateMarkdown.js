@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+//creates the readme page with all the data, data added in the index.js
 const writeFile = fileContent => {
   return new Promise((resolve, reject) => {
       fs.writeFile('./dist/README.md', fileContent, err => {
