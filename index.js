@@ -1,4 +1,4 @@
-const {writeFile, copyFile} = require('./utils/generateMarkdown.js')
+const {writeFile} = require('./utils/generateMarkdown.js')
 const inquirer = require('inquirer');
 const generateMarkdown = require('./src/readme-template.js');
 
@@ -74,19 +74,16 @@ const promptQues = readMeData => {
             }
         },
         {
-            type: 'confirm',
-            name: 'confirmCredits',
-            message: 'Do you have anyone you would like to credit?',
-            default: true
-        },
-        {
             type: 'input',
             name: 'credits',
             message: 'List your collaborators, if any, with links to their GitHub profiles.',
-            when: ({confirmCredits}) => {
-                if (confirmCredits) {
+            validate: contributionInput => {
+                if (contributionInput){
                     return true;
-                } return false;
+                } else {
+                    console.log('Add Credits');
+                    return false;
+                }
             }
         },
         {
@@ -96,20 +93,18 @@ const promptQues = readMeData => {
             choices: ['MIT License', 'GNU General Public License (GPL) 2.0', 'Apache License 2.0', 'GNU General Public License (GPL) 3.0'],
         }, 
         {
-            type: 'confirm',
-            name: 'confirmFeats',
-            message: 'Do you have features to add?',
-            default: true
-        },
-        {
             type: 'input',
             name: 'features',
             message: 'If you have a lot of features, include them here:',
-            when: ({confirmFeats}) => {
-                if (confirmFeats) {
+            validate: contributionInput => {
+                if (contributionInput){
                     return true;
-                } return false;
+                } else {
+                    console.log('Add Features');
+                    return false;
+                }
             }
+        
         },
         {
             type: 'input',
@@ -125,19 +120,16 @@ const promptQues = readMeData => {
             }
         },
         {
-            type: 'confirm',
-            name: 'confirmTest',
-            message: 'Would you like to add tests?',
-            default: true
-        },
-        {
             type: 'input',
             name: 'tests',
             message: 'Write tests for your application.',
-            when: ({confirmTest}) => {
-                if (confirmTest) {
+            validate: contributionInput => {
+                if (contributionInput){
                     return true;
-                } return false;
+                } else {
+                    console.log('Add Tests');
+                    return false;
+                }
             }
         },
         {
@@ -167,12 +159,24 @@ const promptQues = readMeData => {
             }
         },
         
-        
-    ])
+    ]).then(readData => {
+        readMeData.projects.push(readData);
+        if (readData.confirmAddProjects) {
+            return promptQues(readMeData);
+        } else {
+            return readMeData;
+        }
+    })
 }
 
 prompt().then(promptQues).then(readMeData => {
-    //return generateMarkdown(readMeData);
+    return generateMarkdown(readMeData);
+})
+.then(readmeMD => {
+    return writeFile(readmeMD)
+})
+.then(writeFileResponse => {
+    console.log(writeFileResponse);
 })
 .catch(err => {
     console.log(err);

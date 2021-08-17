@@ -1,73 +1,71 @@
-//creates the optional sections 
-const generateCredit = credText => {
-    if (!credText) {
-      return '';
-    }
-  
+
+const generateReadMe = readArr => {
     return `
-    ## Credit
-    ${credits}
-    `;
-}
-  
-const generateFeats = featText => {
-    if (!featText) {
-      return '';
-    }
-  
+${readArr.map(
+    ({
+        description,
+        installation,
+        usage,
+        credits,
+        license,
+        features,
+        contribution,
+        tests,
+        github,
+        email,
+    }) => 
+{
+    console.log(license);
     return `
-    ## Features
-    ${features}
-    `;
+![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg) Check out the badges hosted by [shields.io](https://shields.io/).
+  
+## Description
+${description}
+            
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Credits](#credits)
+* [Questions](#questions)
+            
+## Installation 
+*Steps required to install project and how to get the development environment running:*
+${installation}
+    
+## Usage
+${usage}
+  
+## Credit
+${credits}
+    
+## License
+* This project is using the ${license} license.
+  
+## Features
+${features}
+    
+## Contributing
+${contribution}
+  
+## Test
+${tests}
+    
+## Questions
+* ${github}
+* ${email}
+`
 }
-  
-const generateTest = testText => {
-    if (!testText) {
-      return '';
-    }
-  
+)}`
+};
+
+module.exports = templateData => {
+    const {projects, ...header} = templateData;
+    console.log('Template Data');
+    console.log(templateData);
+
     return `
-    ## Test
-    ${tests}
-    `;
-}
-  
-module.exports = readArr => {
-    return `
-    # ${title} 
-    ![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg) Check out the badges hosted by [shields.io](https://shields.io/).
-  
-    ## Description
-    ${description}
-    
-    ## Table of Contents
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [License](#license)
-    * [Credits](#credits)
-    * [Questions](#questions)
-    
-    ## Installation 
-    *Steps required to install project and how to get the development environment running:*
-    ${installation}
-    
-    ## Usage
-    ${usage}
-  
-    ${generateCredit}
-    
-    ## License
-    > This project is using the ${license} license.
-  
-    ${generateFeats}
-    
-    ## Contributing
-    ${contribution}
-  
-    ${generateTest}
-    
-    ## Questions
-    * ${github}
-    * ${email}
-    `
-}
+# ${header.title}
+${generateReadMe(projects)}
+`;
+};
