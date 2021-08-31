@@ -1,11 +1,11 @@
 
-# test
+# ReadMe Gen
 
 
-![GitHub license](https://img.shields.io/badge/license-undefined-blue.svg) Check out the badges hosted by [shields.io](https://shields.io/).
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) Check out the badges hosted by [shields.io](https://shields.io/).
   
 ## Description
-test
+Test
             
 ## Table of Contents
 * [Installation](#installation)
@@ -21,30 +21,22 @@ test
 ## Usage
 test
   
-aboutText => {
-    if (!aboutText) {
-        return '';
-    }
-
-    return `
-    ## Credit
-    ${credits}
-    `;
-}
+## Credit
+test
     
 ## License
-* This project is using the undefined license.
+* This project is using the MIT license.
   
 ## Features
-undefined
+test
     
 ## Contributing
 test
   
 ## Test
-undefined
+test
     
 ## Questions
-* test
-* test
+* GitHub: jessangarcia
+* Email: <a href="mailto:jess@code.com">jess@code.com</a> 
 

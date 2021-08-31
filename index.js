@@ -88,9 +88,9 @@ const promptQues = readMeData => {
         },
         {
             type: 'list',
-            name: 'licenses',
+            name: 'license',
             message: 'Choose a license.',
-            choices: ['MIT License', 'GNU General Public License (GPL) 2.0', 'Apache License 2.0', 'GNU General Public License (GPL) 3.0'],
+            choices: ['MIT', 'GNU General Public License (GPL) 2.0', 'Apache License 2.0', 'GNU General Public License (GPL) 3.0'],
         }, 
         {
             type: 'input',

@@ -15,7 +15,7 @@ ${readArr.map(
         email,
     }) => 
 {
-    console.log(license);
+    //had some help from Dylan on how to get the shield
     return `
 ![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg) Check out the badges hosted by [shields.io](https://shields.io/).
   
@@ -52,8 +52,8 @@ ${contribution}
 ${tests}
     
 ## Questions
-* ${github}
-* ${email}
+* GitHub: ${github}
+* Email: <a href="mailto:${email}">${email}</a> 
 `
 }
 )}`
